@@ -1,8 +1,9 @@
 package pl.intel.lotto;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.Random;
 import java.util.Scanner;
-import org.apache.commons.lang.StringUtils;
 
 public class Lotto {
 
@@ -20,8 +21,7 @@ public class Lotto {
     private int[] results = new int[6];
 
 
-
-    public void getUserDigit(){
+    public void getUserDigit() {
         int i = 0;
 
         while (true) {
@@ -36,7 +36,7 @@ public class Lotto {
                     this.userInput[i] = digit;
                     i++;
 
-                    if(i == 6) {
+                    if (i == 6) {
                         break;
                     }
                 }
@@ -48,13 +48,13 @@ public class Lotto {
 
     public boolean isInRange(int digit) {
         if (digit >= 1 && digit <= 49) {
-           return true;
+            return true;
         }
         return false;
     }
 
     public boolean isNotRedundand(int digit) {
-       return !checkIsInArray(userInput, digit);
+        return !checkIsInArray(userInput, digit);
     }
 
     public boolean checkIsNumber(String digit) {
@@ -66,7 +66,7 @@ public class Lotto {
         //System.out.println(Arrays.toString(tab));
         //System.out.println(digit);
         for (int i = 0; i < tab.length; i++) {
-            if(tab[i] == digit) {
+            if (tab[i] == digit) {
                 return true;
             }
         }
@@ -76,7 +76,7 @@ public class Lotto {
     public void shuffledDigits() {
 
         Random generator = new Random();
-
+        System.out.println("Liczby wylosowane:");
         for (int i = 0; i < 6; i++) {
             int digit = (int) (generator.nextDouble() * 48 + 1);
             if (!checkIsInArray(results, digit)) {
@@ -84,6 +84,25 @@ public class Lotto {
             } else {
                 i--;
             }
+
+            System.out.print(digit + " ");
+        }
+
+    }
+
+    public void checkedDigits() {
+
+        int winNumb = 0;
+
+        for (int i = 0; i < results.length; i++) {
+            if (results[i] == userInput[i]) {
+
+                winNumb++;
+                System.out.println("trafienia: " + winNumb);
+            }
+//            } else {
+//                System.out.println("brak trafienia");
+//            }
         }
 
     }

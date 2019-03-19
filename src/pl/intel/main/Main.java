@@ -8,5 +8,7 @@ public class Main {
         Lotto lotto = new Lotto();
 
         lotto.getUserDigit();
+        lotto.shuffledDigits();
+        lotto.checkedDigits();
     }
 }
